@@ -11,10 +11,22 @@ import java.util.Random;
  */
 public class CentrePolygon {
 
+    /**
+     * Find the centre of the largest circle that will fit in the specified polygon
+     * @param targetPolygon
+     * @return 
+     */
     public static Point findCentre(Polygon targetPolygon) {
         return findCentre(targetPolygon, 2.0, 40);
     }
 
+    /**
+     * Find the centre of the largest circle that will fit in the specified polygon
+     * @param targetPolygon
+     * @param minimumAccuracy Keep iterating until the bounding box is smaller than this specified accuracy
+     * @param maxMisses How many loops to perform that don't discover a better candidate before resizing the bounding box.
+     * @return 
+     */
     public static Point findCentre(Polygon targetPolygon, double minimumAccuracy, int maxMisses) {
         Point PIA = new Point();
         double currentAccuracy = Double.MAX_VALUE;
