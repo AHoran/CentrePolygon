@@ -17,6 +17,35 @@ public class CentrePolygon {
 	 * @return 
 	 */
 	public static Point findCentre(Polygon targetPolygon) {
+		// Handle degenerate polygons
+		if (targetPolygon == null || targetPolygon.npoints == 0) {
+			throw new IllegalArgumentException("Polygon must have at least one point");
+		}
+		if (targetPolygon.npoints == 1) {
+			return new Point(targetPolygon.xpoints[0], targetPolygon.ypoints[0]);
+		}
+		if (targetPolygon.npoints == 2) {
+			int avgX = (targetPolygon.xpoints[0] + targetPolygon.xpoints[1]) / 2;
+			int avgY = (targetPolygon.ypoints[0] + targetPolygon.ypoints[1]) / 2;
+			return new Point(avgX, avgY);
+		}
+		// Check for collinear points (area == 0)
+		double area = 0.0;
+		for (int i = 0; i < targetPolygon.npoints; i++) {
+			int j = (i + 1) % targetPolygon.npoints;
+			area += targetPolygon.xpoints[i] * targetPolygon.ypoints[j];
+			area -= targetPolygon.ypoints[i] * targetPolygon.xpoints[j];
+		}
+		area = Math.abs(area) / 2.0;
+		if (area == 0.0) {
+			// Return average of all points
+			int sumX = 0, sumY = 0;
+			for (int i = 0; i < targetPolygon.npoints; i++) {
+				sumX += targetPolygon.xpoints[i];
+				sumY += targetPolygon.ypoints[i];
+			}
+			return new Point(sumX / targetPolygon.npoints, sumY / targetPolygon.npoints);
+		}
 		return findCentre(targetPolygon, 2.0, 40);
 	}
 
