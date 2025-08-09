@@ -8,6 +8,11 @@ import static org.junit.Assert.*;
 public class PolyUtilsTest {
     public PolyUtilsTest() {}
     @Test
+    public void testDefaultConstructor() {
+        PolyUtils pu = new PolyUtils();
+        assertNotNull(pu);
+    }
+    @Test
     public void testCreatePolygonFromList() {
         ArrayList<Point> points = new ArrayList<Point>();
         points.add(new Point(0,5));

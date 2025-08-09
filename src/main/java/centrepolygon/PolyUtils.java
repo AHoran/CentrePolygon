@@ -11,6 +11,9 @@ public class PolyUtils {
     public static Polygon CreatePolygonFromList(List<Point> points){
         Polygon poly = new Polygon();
         for(Point p : points){
+            if (p == null) {
+                throw new IllegalArgumentException("Null point in polygon point list");
+            }
             poly.addPoint((int)p.getX(), (int)p.getY());
         }
         return poly;
