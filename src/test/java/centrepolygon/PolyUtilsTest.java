@@ -1,5 +1,4 @@
 package centrepolygon;
-import centrepolygon.PolyUtils;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.util.ArrayList;
