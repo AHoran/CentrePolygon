@@ -1,4 +1,4 @@
-
+package centrepolygon;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.util.List;
@@ -8,16 +8,13 @@ import java.util.List;
  * @author adam.horan
  */
 public class PolyUtils {
-    
     public static Polygon CreatePolygonFromList(List<Point> points){
         Polygon poly = new Polygon();
         for(Point p : points){
             poly.addPoint((int)p.getX(), (int)p.getY());
         }
-        
         return poly;
     }
-    
     public static Point getMin(Polygon poly){
         Point p = new Point(poly.xpoints[0], poly.ypoints[0]);
         for (int i = 0; i < poly.npoints; i++) {
@@ -30,7 +27,6 @@ public class PolyUtils {
         }
         return p;
     }
-    
      public static Point getMax(Polygon poly){
         Point p = new Point(poly.xpoints[0], poly.ypoints[0]);
         for (int i = 0; i < poly.npoints; i++) {
@@ -43,5 +39,4 @@ public class PolyUtils {
         }
         return p;
     }
-    
 }
